@@ -11,6 +11,7 @@ namespace EvenFunnerGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Character jarrod = new Character(10, 10);
 
         public Game1()
         {
@@ -39,7 +40,7 @@ namespace EvenFunnerGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            jarrod.Load(Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -63,7 +64,7 @@ namespace EvenFunnerGame
                 Exit();
 
             // TODO: Add your update logic here
-
+            jarrod.Update();
             base.Update(gameTime);
         }
 
@@ -76,7 +77,7 @@ namespace EvenFunnerGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            jarrod.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }

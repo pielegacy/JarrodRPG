@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 
 namespace EvenFunnerGame
 {
@@ -12,17 +13,21 @@ namespace EvenFunnerGame
     {
         public Sprite char_sprite;
         public int char_health = 10;
-        public int char_speed = 5;
+        public float char_currentspeed = 0;
+        public float char_speed = 4;
         public int char_attack = 10;
         public int char_defence = 10;
         public int char_dexterity = 10;
-
+        
         public string char_name = "Jarrod";
-        public int char_x { get; set; }
-        public int char_y { get; set; }
+        public float char_x { get; set; }
+        public float char_y { get; set; }
+        private bool is_walking = false;
+        private KeyboardState currentKeyboard;
+        private KeyboardState previousKeyboard;
         Texture2D char_texture;
         // Initialization //
-        public Character(int x, int y)
+        public Character(float x, float y)
         {
             char_x = x;
             char_y = y;
@@ -37,12 +42,57 @@ namespace EvenFunnerGame
         // This method is called every tick
         public void Update()
         {
+            is_walking = false;
+            previousKeyboard = currentKeyboard;
+            currentKeyboard = Keyboard.GetState();
+            // Basic Vector Based Movement//
+            if (currentKeyboard.IsKeyDown(Keys.W))
+            {
+                is_walking = true;
+                char_sprite.Location.Y -= char_currentspeed;
+            }
+            if (currentKeyboard.IsKeyDown(Keys.S))
+            {
+                is_walking = true;
+                char_sprite.Location.Y += char_currentspeed;
+            }
+            if (currentKeyboard.IsKeyDown(Keys.A))
+            {
+                is_walking = true;
+                char_sprite.Location.X -= char_currentspeed;
+            }
+            if (currentKeyboard.IsKeyDown(Keys.D))
+            {
+                is_walking = true;
+                char_sprite.Location.X += char_currentspeed;
+            }
+            if (is_walking)
+            {
+                Momentum();
+                char_sprite.IsAnimated = true;
+            }
+            else
+            {
+                char_currentspeed = 0;
+                char_sprite.IsAnimated = false;
+            }
+            char_x = char_sprite.Location.X;
+            char_y = char_sprite.Location.Y;
 
+
+            char_sprite.Update();
+        }
+        public void Momentum()
+        {
+            if (char_currentspeed <= char_speed)
+            {
+                char_currentspeed += 0.4f;
+            }
         }
         // This is where the game's content is drawn
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-
+            char_sprite.Draw(spriteBatch);
         }
     }
 }

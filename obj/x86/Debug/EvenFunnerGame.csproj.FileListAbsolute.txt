@@ -23,3 +23,4 @@ C:\Users\Alex\documents\visual studio 2015\Projects\FunGame\EvenFunnerGame\bin\W
 C:\Users\Alex\documents\visual studio 2015\Projects\FunGame\EvenFunnerGame\obj\x86\Debug\EvenFunnerGame.exe
 C:\Users\Alex\documents\visual studio 2015\Projects\FunGame\EvenFunnerGame\obj\x86\Debug\EvenFunnerGame.pdb
 C:\Users\Alex\documents\visual studio 2015\Projects\FunGame\EvenFunnerGame\obj\x86\Debug\EvenFunnerGame.csprojResolveAssemblyReference.cache
+C:\Users\Alex\documents\visual studio 2015\Projects\FunGame\EvenFunnerGame\bin\Windows\Debug\Content\char_jarrod.xnb
